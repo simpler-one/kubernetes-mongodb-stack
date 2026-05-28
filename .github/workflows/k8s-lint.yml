@@ -1,0 +1,21 @@
+name: 'K8s Manifest Validation'
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  validate-yaml:
+    name: 'Lint Kubernetes Manifests'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Validate Kubernetes YAML Syntax
+      run: |
+        # Use built-in python/ruby toolings or native engine to verify valid YAML structures
+        python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('*.yaml')]"
