@@ -17,5 +17,4 @@ jobs:
 
     - name: Validate Kubernetes YAML Syntax
       run: |
-        # Use built-in python/ruby toolings or native engine to verify valid YAML structures
-        python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('*.yaml')]"
+        python3 -c "import yaml, glob; [list(yaml.safe_load_all(open(f))) for f in glob.glob('*.yaml')]"
